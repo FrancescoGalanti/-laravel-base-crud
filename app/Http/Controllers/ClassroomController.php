@@ -19,7 +19,7 @@ class ClassroomController extends Controller
         $classrooms = Classroom::all();
         //dd($classrooms);
 
-        return view('classrooms.index');
+        return view('classrooms.index', compact('classrooms'));
     }
 
     /**
@@ -49,9 +49,12 @@ class ClassroomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Classroom $classroom)
     {
-        //
+        /* $classroom = Classroom::find($id); */
+        //dd($classrooms);
+
+        return view('classrooms.show', compact('classroom'));
     }
 
     /**
