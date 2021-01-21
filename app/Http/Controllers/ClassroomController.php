@@ -47,6 +47,17 @@ class ClassroomController extends Controller
             'name' => 'required|unique:classrooms|max:10',
             'description' => 'required'
         ]);
+
+        $classroom = new Classroom();
+        $classroom->name = $data['name'];
+        $classroom->description = $data['description'];
+
+        $saved = $classroom->save();
+        //dd($saved);
+
+        if($saved){
+            return redirect()->route('classrooms.show', $classroom->id);
+        }
     }
 
     /**

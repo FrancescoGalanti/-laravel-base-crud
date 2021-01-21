@@ -19,11 +19,11 @@
 
        <div class="form-group">
           <label for="name">Classroom name</label>
-          <input class="form-control" type="text" name="name">
+          <input class="form-control" type="text" name="name" value="{{old('name')}}">
        </div>
        <div class="form-group">
           <label for="description">Classroom description</label>
-          <textarea class="form-control"  name="description"></textarea>
+          <textarea class="form-control"  name="description">{{old('description')}}</textarea>
        </div>
        <div class="form-group">
           <input class="btn btn-primary" type="submit" value="Create">
