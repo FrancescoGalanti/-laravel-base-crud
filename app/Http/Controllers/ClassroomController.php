@@ -29,7 +29,7 @@ class ClassroomController extends Controller
      */
     public function create()
     {
-        //
+        return view('classrooms.create');
     }
 
     /**
@@ -40,7 +40,13 @@ class ClassroomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        //dd($data);
+
+        $request->validate([
+            'name' => 'required|unique:classrooms|max:10',
+            'description' => 'required'
+        ]);
     }
 
     /**
