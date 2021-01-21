@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('homepage');
+Route::get('/', 'HomeController@index')->name('homepage');
+// colection of controllers
+Route::resource('classrooms' , 'ClassroomController');

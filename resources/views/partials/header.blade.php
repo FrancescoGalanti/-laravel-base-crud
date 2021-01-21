@@ -15,7 +15,7 @@
                <a class="nav-link" href="{{route('homepage')}}">Home</a>
            </li>
            <li class="nav-item">
-               <a class="nav-link" href="{{route('homepage')}}">Classrooms</a>
+               <a class="nav-link" href="{{route('classrooms.index')}}">Classrooms</a>
            </li>
          </ul>
        </div>
