@@ -2,7 +2,12 @@
 @section('content')
    <div class="container mb-5">
        <h1>OUR CLASSROOMS</h1>
-       
+       @if (session('deleted'))
+        <div class="alert alert-danger">
+            {{session('deleted')}} deleted!
+        </div>
+            
+        @endif
        <table class="table table-striped mt-5">
           <thead>
               <tr>
@@ -24,14 +29,16 @@
                           </a>
                        </td>
                        <td class="text-center" width="100">
-                          <a class="btn btn-primary" href="{{route('classrooms.show', $classroom->id)}}">
+                          <a class="btn btn-primary" href="{{route('classrooms.edit', $classroom->id)}}">
                              Edit
                           </a>
                        </td>
                        <td class="text-center" width="100">
-                          <a class="btn btn-danger" href="{{route('classrooms.show', $classroom->id)}}">
-                             Delete
-                          </a>
+                         <form action="{{ route('classrooms.destroy', $classroom->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input class="btn btn-danger" type="submit" value="Delete">
+                         </form>
                        </td>
                    </tr>
                @endforeach

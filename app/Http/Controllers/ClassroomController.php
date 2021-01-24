@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Classroom;
 
 class ClassroomController extends Controller
@@ -49,8 +50,9 @@ class ClassroomController extends Controller
         ]);
 
         $classroom = new Classroom();
-        $classroom->name = $data['name'];
-        $classroom->description = $data['description'];
+       /*  $classroom->name = $data['name'];
+        $classroom->description = $data['description']; */
+        $classroom->fill($data);
 
         $saved = $classroom->save();
         //dd($saved);
@@ -81,8 +83,9 @@ class ClassroomController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+        $classroom = Classroom::find($id);
+        return view('classrooms.edit', compact('classroom'));
     }
 
     /**
@@ -94,7 +97,24 @@ class ClassroomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $classroom = Classroom::find($id);
+
+        $request->validate([
+            'name' => [
+                'required',
+                Rule::unique('classrooms')->ignore($id),
+                'max:10'
+            ],
+            'description' => 'required'
+        ]);
+
+        $update =  $classroom->update($data);
+
+        if ($update) {
+            return redirect()->route('classrooms.show', $id);
+        }
     }
 
     /**
@@ -105,6 +125,17 @@ class ClassroomController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $classroom = Classroom::find($id);
+        $ref = $classroom->name;
+
+        /* dd($classroom); */,.
+         
+        $deleted = $classroom->delete();
+          
+        
+        
+        if ($deleted){
+            return redirect()->route('classrooms.index')->with('deleted', $ref);
+        }
     }
 }
