@@ -8,7 +8,7 @@
        <p>{{$classroom->description}}</p>
        <hr>
 
-       <div class="mb-3">Created at: {{$classroom->created_at}}</div>
-       <div class="mb-3">Updated at: {{$classroom->updated_at}}</div>
+       <div class="mb-3">Created at: {{$classroom->created_at->format('l d/m/Y')}}</div>
+       <div class="mb-3">Updated at: {{$classroom->updated_at->diffforHumans()}}</div>
    </div>
 @endsection 

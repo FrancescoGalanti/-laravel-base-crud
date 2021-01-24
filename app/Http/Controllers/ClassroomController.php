@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Classroom;
+use Carbon\Carbon;
 
 class ClassroomController extends Controller
 {
@@ -19,6 +20,11 @@ class ClassroomController extends Controller
 
         $classrooms = Classroom::all();
         //dd($classrooms);
+        $classrooms = Classroom::paginate(4);
+/* 
+        $dt = Carbon::now()->locale('it_IT');
+        dump($dt->locale());
+        dump($dt->isoFormat('dddd DD/MM/YYYY')); */.
 
         return view('classrooms.index', compact('classrooms'));
     }
@@ -128,7 +134,7 @@ class ClassroomController extends Controller
         $classroom = Classroom::find($id);
         $ref = $classroom->name;
 
-        /* dd($classroom); */,.
+        /* dd($classroom); */
          
         $deleted = $classroom->delete();
           
