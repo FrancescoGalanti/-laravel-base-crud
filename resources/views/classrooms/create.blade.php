@@ -13,7 +13,7 @@
         </div>
       @endif
 
-     <form action="{{route('classrooms.store')}}" method="POST">
+     <form action="{{route('classrooms.store')}}" method="POST" enctype="multipart/form-data">
        @csrf
        @method('POST')
 
@@ -23,6 +23,10 @@
        </div>
        <div class="form-group">
           <label for="description">Classroom description</label>
+          <textarea class="form-control"  name="description">{{old('description')}}</textarea>
+       </div>
+       <div class="form-group">
+          <label for="path_img">Classroom description</label>
           <textarea class="form-control"  name="description">{{old('description')}}</textarea>
        </div>
        <div class="form-group">

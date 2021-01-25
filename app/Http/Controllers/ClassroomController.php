@@ -24,7 +24,7 @@ class ClassroomController extends Controller
 /* 
         $dt = Carbon::now()->locale('it_IT');
         dump($dt->locale());
-        dump($dt->isoFormat('dddd DD/MM/YYYY')); */.
+        dump($dt->isoFormat('dddd DD/MM/YYYY')); */
 
         return view('classrooms.index', compact('classrooms'));
     }
@@ -120,6 +120,8 @@ class ClassroomController extends Controller
 
         if ($update) {
             return redirect()->route('classrooms.show', $id);
+        }else{
+            return redirect()->route('home');
         }
     }
 
